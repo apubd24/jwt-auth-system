@@ -1,0 +1,62 @@
+sudo -u postgres psql
+
+CREATE USER myuser WITH PASSWORD 'StrongPassword@123';
+CREATE DATABASE mydatabase;
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
+
+ALTER DATABASE mydatabase OWNER TO myuser;
+alter user <username> with encrypted password '<password>';
+
+
+
+-- Grant all privileges on the public schema to your user
+GRANT ALL ON SCHEMA public TO your_username;
+-- Also grant future privileges
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO your_username;
+
+
+curl -X POST http://localhost:8090/api/auth/register   -H "Content-Type: application/json"   -d '{"username":"testuser","password":"123","role":"readonly"}'
+{"username":"admin","password":"123","role":"admin"}
+
+http://172.17.18.186:8090/api/auth/login
+{"username":"admin","password":"123"}
+
+http://172.17.18.186:8090/api/devices
+{
+  "name": "APURBA DC Router",
+  "serial": "1234499",
+  "description": "Main router",
+
+  "customer_id": 1,
+  "customer_name": "Desh Online Ltd",
+
+  "device_name": "CCR-01",
+  "device_vendor": "DELL",
+  "device_category": "SERVER",
+  "device_type": "POWEREDGE",
+
+  "ip_address": "172.25.230.1",
+  "snmp_community": "public",
+  "snmp_version": "v2",
+
+  "is_active": true
+}
+
+Registation: http://172.17.18.186:8090/api/auth/register
+
+
+curl -X POST http://172.17.18.186:8090/api/products   -H "Content-Type: application/json"   -H "Authorization: Bearer $TOKEN"   -d '{"name":"Route2r-01","serial":"SN-w2e22001","description":"Mai2n router"}'
+
+
+#====================
+[GIN-debug] POST   /api/auth/register        --> jwt-auth-backend/handlers.Register (4 handlers)
+[GIN-debug] POST   /api/auth/login           --> jwt-auth-backend/handlers.Login (4 handlers)
+[GIN-debug] GET    /api/validate             --> jwt-auth-backend/handlers.ValidateToken (5 handlers)
+[GIN-debug] GET    /api/devices              --> jwt-auth-backend/handlers.GetAllDevices (5 handlers)
+[GIN-debug] POST   /api/devices/             --> jwt-auth-backend/handlers.CreateDevice (6 handlers)
+[GIN-debug] PUT    /api/devices/:id          --> jwt-auth-backend/handlers.UpdateDevice (6 handlers)
+[GIN-debug] DELETE /api/devices/:id          --> jwt-auth-backend/handlers.DeleteDevice (6 handlers)
+[GIN-debug] GET    /api/users/               --> jwt-auth-backend/handlers.GetAllUsers (6 handlers)
+[GIN-debug] POST   /api/users/               --> jwt-auth-backend/handlers.CreateUser (6 handlers)
+[GIN-debug] PUT    /api/users/:id            --> jwt-auth-backend/handlers.UpdateUser (6 handlers)
+[GIN-debug] DELETE /api/users/:id            --> jwt-auth-backend/handlers.DeleteUser (6 handlers)

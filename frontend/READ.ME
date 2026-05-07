@@ -1,0 +1,47 @@
+jwt-auth-system/
+├── backend/
+│   ├── main.go
+│   ├── go.mod
+│   ├── .env
+│   ├── models/
+│   │   ├── user.go
+│   │   └── device.go
+│   ├── database/
+│   │   └── db.go
+│   ├── middleware/
+│   │   ├── auth.go
+│   │   └── role.go
+│   ├── handlers/
+│   │   ├── auth.go
+│   │   ├── user.go
+│   │   ├── device.go
+│   │   └── token.go
+│   └── routes/
+│       └── routes.go
+└── frontend/
+    ├── src/
+    │   ├── App.js
+    │   ├── index.js
+    │   ├── components/
+    │   │   ├── Login.js
+    │   │   ├── Register.js        (for readonly users)
+    │   │   ├── AdminUsers.js      (admin manages users)
+    │   │   ├── DeviceList.js
+    │   │   ├── DeviceForm.js
+    │   │   └── Navbar.js
+    │   ├── context/
+    │   │   └── AuthContext.js
+    │   └── services/
+    │       └── api.js
+    ├── package.json
+    └── .env
+
+
+
+
+
+FOR REACT
+npx create-react-app frontend
+cd frontend
+npm install axios react-router-dom
+
