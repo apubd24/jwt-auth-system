@@ -13,6 +13,7 @@ func main() {
 	godotenv.Load()
 	database.Connect()
 	r := routes.SetupRouter()
+	r.Static("/uploads", "./uploads") //For logo upload
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8090"

@@ -42,6 +42,31 @@ http://172.17.18.186:8090/api/devices
   "is_active": true
 }
 
+
+
+
+
+ {
+        "name": "ApurbaTestUser",
+        "serial": "121212232",
+        "description": "Yes now ok",
+        "CustomerID": 1,
+        "CustomerName": "Desh Online Ltd",
+        "DeviceName": "PVE-ROL111",
+        "DeviceVendor": "DELL",
+        "DeviceCategory": "SERVER",
+        "DeviceType": "POWEREDGE",
+        "IpAddress": "122.25.0.214",
+        "SnmpCommunity": "DhakaSYSColo",
+        "SnmpVersion": "v2",
+        "is_active": false,
+    }
+
+
+
+
+
+
 Registation: http://172.17.18.186:8090/api/auth/register
 
 
@@ -60,3 +85,22 @@ curl -X POST http://172.17.18.186:8090/api/products   -H "Content-Type: applicat
 [GIN-debug] POST   /api/users/               --> jwt-auth-backend/handlers.CreateUser (6 handlers)
 [GIN-debug] PUT    /api/users/:id            --> jwt-auth-backend/handlers.UpdateUser (6 handlers)
 [GIN-debug] DELETE /api/users/:id            --> jwt-auth-backend/handlers.DeleteUser (6 handlers)
+
+
+
+
+
+
+
+
+CREATE TYPE vendor_type AS ENUM ('BDCOM', 'VSOL', 'HUAWEI', 'ZTE', 'FIBERHOME', 'DELL');
+
+CREATE TYPE device_category AS ENUM ('ROUTER', 'SWITCH', 'FIREWALL', 'OLT', 'SERVER');
+CREATE TYPE hardware_model AS ENUM ('Dell PowerEdge R630', 'Dell PowerEdge R640', 'Dell EMC PowerEdge R740');
+CREATE TYPE hardware_model AS ENUM ('Dell PowerEdge R630', 'Dell PowerEdge R640', 'Dell EMC PowerEdge R740');
+
+CREATE TYPE pon_type AS ENUM ('EPON', 'GPON', 'XPON', 'L2', 'L3', 'POWEREDGE');
+
+CREATE TYPE snmp_ver AS ENUM ('v1', 'v2', 'V3');
+CREATE TYPE snmp_group AS ENUM ('EPON', 'GPON', 'XPON', 'L2', 'L3', 'POWEREDGE');
+

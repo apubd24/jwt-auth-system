@@ -47,6 +47,7 @@ func SetupRouter() *gin.Engine {
 
 		// Device routes – read for all authenticated
 		api.GET("/devices", handlers.GetAllDevices)
+		api.GET("/devices/dropdown", handlers.GetDeviceDropdown)
 
 		// Admin-only device mutations
 		adminDevices := api.Group("/devices")
@@ -56,6 +57,21 @@ func SetupRouter() *gin.Engine {
 			adminDevices.GET("/:id", handlers.GetDeviceByID)
 			adminDevices.PUT("/:id", handlers.UpdateDevice)
 			adminDevices.DELETE("/:id", handlers.DeleteDevice)
+		}
+
+		api.GET("/customers", handlers.ListCustomers)
+		api.GET("/customers/:id", handlers.GetCustomer)
+		api.GET("/customers/dropdown", handlers.GetCustomerDropdown)
+
+		// Admin-only customer mutations
+		adminCustomers := api.Group("/customers")
+		adminCustomers.Use(middleware.RequireRole("admin"))
+		{
+			adminCustomers.POST("", handlers.CreateCustomer)
+			adminCustomers.PUT("/:id", handlers.UpdateCustomer)
+			adminCustomers.DELETE("/:id", handlers.DeleteCustomer)
+			adminCustomers.POST("/:id/logo", handlers.DeleteCustomer)
+			adminCustomers.DELETE("/:id/contacts", handlers.DeleteCustomerContacts)
 		}
 
 		// Device Products – read for all authenticated
